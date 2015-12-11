@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>摄影圈</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style type="text/css">
+			#list {
+				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+				margin-top: -1px;
+			}
+			.photo-ul  li { width: 47%; float: left; list-style: none; margin-left: 2%; height: 190px; overflow: hidden; margin-top: 10px; border-bottom: #E0E0E0 solid 1px ;}
+			.photo-ul  li div{ width: 100%; height: 160px;  overflow: hidden;background: url(../images/zwf1.jpg); background-size:100%  ; } 
+			.photo-ul  li p{ height: 30px; line-height: 30px; font-size: 16px;}
+			.photo-ul  li img{  width: 100%;}
+			.baner_img{ overflow: hidden;}
+			.baner_img img{ width: 100%;}
+			.photo_list_box{background: #FFFFFF; overflow:hidden ; margin-top: 10px;border-top: #e0e0e0 solid 1px;}
+			.photo_list_box header{ width: 96%; margin: auto; height: 40px; border-bottom: #E0E0E0 solid 1px; position: relative;}
+			.photo_list_box header h2{  height: 35px; line-height: 35px; position: absolute; top: 0px; left: 10px; font-size: 18px; font-weight: normal;  border-bottom: #C7254E solid 2px;}
+		</style>
+	</head>
+
+	<body style="background: #f6f6f6;" id="scrollbox">
+		<!--下拉刷新容器-->
+		<div id="photoRefresh" class="mui-content mui-scroll-wrapper" style="background: #f6f6f6;">
+			<div class="mui-scroll">
+				<div class="baner_img">
+					<img src="../images/banner.jpg">
+				</div>
+				<section class="photo_list_box">
+					<header>
+						<h2>影展每周详情</h2>
+					</header>
+					<ul id="photo_list" class="photo-ul">
+					</ul>
+				</section>
+			</div>
+		</div>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript" src="../controller/photolist.controller.js"></script>
+	</body>
+
+</html>
