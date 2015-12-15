@@ -1,6 +1,5 @@
 var aniShow = "pop-in";
 //只有ios支持的功能需要在Android平台隐藏；
-//WEBSQL
 if (mui.os.android) {
 	var list = document.querySelectorAll('.ios-only');
 	if (list) {
@@ -69,9 +68,9 @@ mui.init({
 			contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
 			contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
 			callback: function() {
-				ajaxGetPhotoList(1)
 				mui("#photoRefresh").pullRefresh().endPulldownToRefresh()
-				mui("#photoRefresh").pullRefresh().endPullUpToRefresh()
+				ajaxGetPhotoList(1)
+
 			}
 		}
 	}
@@ -94,12 +93,9 @@ var photo_list = document.getElementById('photo_list');
 function ajaxGetPhotoList(page) {
 	var nowtime = new Date().getTime()
 	var cachetime = parseInt(plus.storage.getItem('cachetime'))
-	if (page == 1 && (nowtime - cachetime) > 1000 * 60 * 5) {
-		//保证上拉刷新可以开启
-		ishavedata = true
+	if (page == 1 && (nowtime - cachetime) < 1000 * 60 * 5) {
 		return
 	}
-
 
 	mui.ajax('http://api.mastergolf.cn:80/v1/home/beauties/list.json' + page, {
 		data: {
@@ -119,7 +115,6 @@ function ajaxGetPhotoList(page) {
 				plus.storage.setItem('cachetime', (new Date().getTime()).toString())
 			}
 			if (code == 10000) {
-				console.log(data.data.length)
 				if (data.data.length == 0) {
 					ishavedata = false
 				} else {
@@ -140,10 +135,10 @@ function insertPhotoListFromStroge() {
 		ajaxGetPhotoList(1)
 	} else {
 		photolists = JSON.parse(photolists)
-		var html = ""
-		var _l = photolists.length
+		var html = "";
+		var _l = photolists.length;
 		for (i = 0; i < _l; i++) {
-			html += '<li class=""><div><img src="' + photolists[i].image + '"></div><p>' + photolists[i].name + '</p></li>'
+			html += '<li class=""><div><img src="' + photolists[i].image + '"></div><p>' + photolists[i].name + '</p></li>';
 		}
 		photo_list.innerHTML = html;
 	}
@@ -152,31 +147,29 @@ function insertPhotoListFromStroge() {
 
 function insertPhotoListFromAjax(photolists, page) {
 	if (page == 1) {
-		if (pagesnumber == 1) {
-			photo_list.innerHTML = ""
-			pagesnumber = 1
-		} else {
-			var _html = photo_list.innerHTML
-			photo_list.innerHTML=""
-			var _l = photolists.length
-			for (i = 0; i < _l; i++) {
-				var li = document.createElement('li')
-				li.innerHTML = '<div><img src="' + photolists[i].image + '"  class="fade-in"></div><p>' + photolists[i].name + '</p>'
-				photo_list.appendChild(li)
-			}
-			photo_list.innerHTML +=_html
-		}
-	}else{
+		photo_list.innerHTML = ""
+		pagesnumber = 1
+	}
 	var _l = photolists.length
 	for (i = 0; i < _l; i++) {
 		var li = document.createElement('li')
 		li.innerHTML = '<div><img src="' + photolists[i].image + '"  class="fade-in"></div><p>' + photolists[i].name + '</p>'
 		photo_list.appendChild(li)
 	}
-	}
+}
+var mask
+function mark() {
+	mask = mui.createMask(function() {
+		 plus.webview.hide('pages/upload.html','slide-out-bottom',300)
+		var indexview = plus.webview.currentWebview().parent()
+		indexview.evalJS('tabBtnClass()')
+	}); //callback为用户点击蒙版时自动执行的回调；
+	mask.show(); //显示遮罩
 }
 
-
+function markclose() {
+	mask.close()
+}
 
 
 

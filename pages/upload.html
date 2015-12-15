@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>摄影圈</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			body{background: #FFFFFF;}
+			.mui-content{background: #FFFFFF;}
+			.upload-row{position: absolute; bottom: 60px; height: 100px; width: 100%;}
+			.upload-row .mui-col-xs-4 {text-align: center; padding-bottom: 10px;}
+			.upload-row .mui-col-xs-4 div{ width: 50px; margin:0px auto 10px;  }
+			.upload-row .mui-col-xs-4 div img{ display: block; width: 100%;}
+			.bottom{ height: 60px; border-top: #e0e0e0 solid 1px;position: absolute; bottom: 0px; width: 100%;}
+			.bottom .mui-col-xs-4{ margin-left: 33.33%;}
+			.bottom .mui-col-xs-4 img{display: block; margin:10px auto 0px; width: 40px;}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-row upload-row">
+				<div class="mui-col-xs-4" id="album">
+					<div class="">
+						<img src="../images/upload1.jpg">
+					</div>
+					相册上传</div>
+				<div class="mui-col-xs-4"  id="camera">
+					<div class="">
+						<img src="../images/upload2.jpg">
+					</div>
+					拍照上传</div>
+				<div class="mui-col-xs-4">
+					<div class="">
+						<img src="../images/upload3.jpg">
+					</div>
+					参赛</div>
+			</div>
+			<div class="bottom mui-row">
+				<div class="mui-col-xs-4" id="closebtn">
+					<img src="../images/close.jpg" />
+				</div>
+
+			</div>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../controller/upload.controller.js" ></script>
+	</body>
+
+</html>

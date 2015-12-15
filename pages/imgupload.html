@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>摄影圈</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+		body,.mui-content{background: #FFFFFF;}
+			.mui-bar-nav {
+				background: #FFFFFF;
+				box-shadow: none;
+				border-bottom: #FF5053 solid 1px;
+			}
+			.img_box{width: 80%;  margin:10px auto; height: 80%;}
+			.uploadbtn{ width:100% ; height: 50px; line-height: 50px; position: fixed; bottom: 0px; left: 0px; background: #ffaa50; color: #FFFFFF;text-align: center;}
+			.loadbox{ width: 100%; height: 100%; position: fixed; top: 50px; left: 0px; text-align: center; line-height: 100px; background: #FFFFFF; z-index: 2;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" id="mui-title">图片上传</h1>
+			<a id="info" class="mui-action-back  mui-icon  mui-icon-back    mui-pull-left" style="color: #ed6b5d;"></a>
+		</header>
+		<div class="loadbox" id="loadbox">
+			正在加载.....
+		</div>
+		<div class="mui-content">
+			<div  class="img_box" id="img_box">
+				<img id="img" onload="imgLoaded();" />
+			</div>
+		
+		</div>
+		<div class="uploadbtn">立即上传</div>
+		
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script>
+			mui.init()
+			var loadbox=document.getElementById('loadbox')
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview()
+				var imgsrc = self.imgsrc
+				var img = document.getElementById('img')
+				img.src = imgsrc
+				console.log(imgsrc)
+			})
+
+			function imgLoaded() {
+			
+				var b = document.getElementById('img_box');
+				var img = document.getElementById("img");
+				var pb = b.clientHeight / b.clientWidth,
+					pi = img.clientHeight / img.clientWidth;
+				if (pb > pi) {
+					img.style.width = "100%";
+				} else {
+					img.style.height = "100%";
+				}
+				setTimeout(function(){
+					loadbox.style.display='none'	
+				},1000)
+				
+			}
+		</script>
+	</body>
+
+</html>

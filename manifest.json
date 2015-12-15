@@ -166,7 +166,8 @@
 					"pages/tab-webview-subpage-contact.html",
 					"pages/tab-webview-subpage-chat.html",
 					"js/mui.js",
-					"js/imgloading.js"
+					"js/imgloading.js",
+					"pages/upload.html"
 				],
 				"refer": [
 					"index-menu.html"
@@ -1046,6 +1047,30 @@
 				"resources": [
 					"fonts/mui.ttf",
 					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pages/upload.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/upload3.jpg",
+					"images/upload2.jpg",
+					"images/upload1.jpg",
+					"images/close.jpg",
+					"controller/upload.controller.js"
+				],
+				"refer": [
+					"pages/imgupload.html"
+				],
+				"priority": 0
+			},
+			"pages/imgupload.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
 					"css/mui.min.css"
 				],
 				"refer": [],
